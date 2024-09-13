@@ -53,6 +53,10 @@ if echo "$OS_NAME" | grep -qE "(Astra|Debian|Ubuntu)"; then
   chmod 0755 /run/sshd
 fi
 
+if echo "$OS_NAME" | grep -qE "(Astra)"; then
+  rm /etc/pam.d/sshd
+fi
+
 /usr/sbin/sshd
 
 log "Please setup new root password"
