@@ -49,12 +49,12 @@ sh -c "export -p" >/setup_env.sh
 
 log "Run ssh server"
 if echo "$OS_NAME" | grep -qE "(Astra|Debian|Ubuntu)"; then
-  mkdir /run/sshd
+  mkdir -p /run/sshd
   chmod 0755 /run/sshd
 fi
 
 if echo "$OS_NAME" | grep -qE "(Astra)"; then
-  rm /etc/pam.d/sshd
+  [ -f /etc/pam.d/sshd ] && rm /etc/pam.d/sshd
 fi
 
 /usr/sbin/sshd
